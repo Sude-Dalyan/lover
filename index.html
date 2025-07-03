@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Beni Ne Kadar Çok Seviyorsun?</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #fef3f3;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      color: #e91e63;
+    }
+
+    #buttons {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: top 0.2s, left 0.2s;
+    }
+
+    #cokBtn {
+      background-color: #f06292;
+      color: white;
+      position: absolute;
+    }
+
+    #azBtn {
+      background-color: #e0e0e0;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Beni ne kadar çok seviyorsun?</h1>
+  <div id="buttons">
+    <button id="cokBtn">Çok 🤍</button>
+    <button id="azBtn">Az</button>
+  </div>
+
+  <script>
+    const cokBtn = document.getElementById('cokBtn');
+    const azBtn = document.getElementById('azBtn');
+    let oCount = 1;
+
+    function getRandomPosition() {
+      const container = document.getElementById('buttons');
+      const maxX = container.offsetWidth - cokBtn.offsetWidth;
+      const maxY = 200;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      return { x, y };
+    }
+
+    cokBtn.addEventListener('mouseenter', () => {
+      oCount++;
+      cokBtn.textContent = "Ç" + "o".repeat(oCount) + "k" + " 🤍";
+
+      const pos = getRandomPosition();
+      cokBtn.style.left = pos.x + 'px';
+      cokBtn.style.top = pos.y + 'px';
+    });
+
+    azBtn.addEventListener('click', () => {
+      alert('Sağol.');
+    });
+  </script>
+</body>
+</html>
