@@ -1,88 +1,103 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8">
   <title>Beni Ne Kadar Çok Seviyorsun?</title>
   <style>
     body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff0f3;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
-      font-family: sans-serif;
-      background-color: #fef3f3;
+      text-align: center;
+      padding: 20px;
     }
 
     h1 {
-      margin-bottom: 40px;
       color: #e91e63;
+      margin-bottom: 40px;
     }
 
-    #buttons {
+    .buttons {
       display: flex;
       gap: 20px;
-      position: relative;
+      margin-bottom: 30px;
     }
 
     button {
-      padding: 12px 20px;
+      padding: 12px 24px;
       font-size: 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: top 0.2s, left 0.2s;
+      transition: background-color 0.3s;
     }
 
     #cokBtn {
       background-color: #f06292;
       color: white;
-      position: absolute;
     }
 
     #azBtn {
       background-color: #e0e0e0;
       color: black;
     }
+
+    #message {
+      max-width: 650px;
+      font-size: 18px;
+      color: #444;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
-  <h1>Bende Seni Çok Seviyorum 🤍</h1>
-  <!--
-  <div id="buttons">
-    <button id="cokBtn">Çok 🤍</button>
+
+  <h1 id="question">Beni ne kadar çok seviyorsun?</h1>
+
+  <div class="buttons" id="buttonGroup">
+    <button id="cokBtn">Çok</button>
     <button id="azBtn">Az</button>
-  </div>-->
+  </div>
+
+ 
+  <div id="message"></div>
 
   <script>
-    const cokBtn = document.getElementById('cokBtn');
-    const azBtn = document.getElementById('azBtn');
-    let oCount = 1;
+    const question = document.getElementById('question');
+    const buttonGroup = document.getElementById('buttonGroup');
 
-    function getRandomPosition() {
-      const container = document.getElementById('buttons');
-      const maxX = container.offsetWidth - cokBtn.offsetWidth;
-      const maxY = 200;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
-      return { x, y };
+    function hideQuestionAndButtons() {
+      question.style.display = 'none';
+      buttonGroup.style.display = 'none';
     }
 
-    cokBtn.addEventListener('mouseenter', () => {
-      oCount++;
-      cokBtn.textContent = "Ç" + "o".repeat(oCount) + "k" + " 🤍";
-
-      const pos = getRandomPosition();
-      cokBtn.style.left = pos.x + 'px';
-      cokBtn.style.top = pos.y + 'px';
+    cokBtn.addEventListener('click', () => {
+      hideQuestionAndButtons();
+      message.innerHTML = `
+    Seni ne kadar çok sevdiğimi anlatmak kelimelere sığmaz.<br>
+    Gülüşünle dünyam aydınlanıyor, yanımda olduğunda her şey tamamlanıyor.<br>
+    Seninle geçirdiğim her an, en güzel hatıralarımın bir parçası oluyor.<br>
+    Bazen düşüncesizlik yapsam da, şu bir gerçektir ki;<br><br>
+    <strong>Sen benim için her şeyden değerlisin.</strong><br><br>
+    Kalbim her gün daha da çok seviyor seni, hemde her nefeste biraz daha :)<br>
+    İyi ki hayatımdasın ❤️
+  `;
     });
 
     azBtn.addEventListener('click', () => {
-      alert('Sağol.');
+      hideQuestionAndButtons();
+      message.textContent = 'Yalan söyleme :)';
     });
+
   </script>
+
 </body>
+
 </html>
